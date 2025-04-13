@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel Admin - Fuxico Parauapebas</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .admin-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+        
+        .admin-header {
+            background: linear-gradient(135deg, var(--verde), var(--verde-escuro));
+            padding: 1rem;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .admin-header h1 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+        
+        .logout-btn {
+            background-color: var(--marrom);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .logout-btn:hover {
+            background-color: #6b3610;
+        }
+        
+        .admin-nav {
+            background-color: var(--marrom);
+            padding: 1rem;
+        }
+        
+        .admin-nav ul {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .admin-nav li {
+            margin-right: 1.5rem;
+        }
+        
+        .admin-nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .admin-nav a:hover {
+            color: var(--amarelo);
+        }
+        
+        .admin-content {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .sidebar {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .main-content {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .submit-btn {
+            background-color: var(--verde);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .submit-btn:hover {
+            background-color: var(--verde-escuro);
+        }
+        
+        .news-list {
+            margin-top: 2rem;
+        }
+        
+        .news-item {
+            border-bottom: 1px solid #eee;
+            padding: 1rem 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .news-item:last-child {
+            border-bottom: none;
+        }
+        
+        .news-actions a {
+            margin-left: 1rem;
+            color: var(--verde);
+            text-decoration: none;
+        }
+        
+        .news-actions a:hover {
+            text-decoration: underline;
+        }
+        
+        .news-actions a.delete {
+            color: #d9534f;
+        }
+    </style>
+</head>
+<body>
+    <header class="admin-header">
+        <h1>Painel Administrativo - Fuxico Parauapebas</h1>
+        <button class="logout-btn" id="logoutBtn">Sair</button>
+    </header>
+    
+    <nav class="admin-nav">
+        <ul>
+            <li><a href="painel.html">Dashboard</a></li>
+            <li><a href="#noticias">Notícias</a></li>
+            <li><a href="#eventos">Eventos</a></li>
+            <li><a href="#configuracoes">Configurações</a></li>
+        </ul>
+    </nav>
+    
+    <div class="admin-container">
+        <div class="admin-content">
+            <aside class="sidebar">
+                <h3>Menu Rápido</h3>
+                <ul>
+                    <li><a href="#nova-noticia">Nova Notícia</a></li>
+                    <li><a href="#noticias-publicadas">Notícias Publicadas</a></li>
+                    <li><a href="#estatisticas">Estatísticas</a></li>
+                </ul>
+                
+                <h3 style="margin-top: 2rem;">Estatísticas</h3>
+                <p>Notícias publicadas: <strong>24</strong></p>
+                <p>Visitas hoje: <strong>156</strong></p>
+            </aside>
+            
+            <main class="main-content">
+                <section id="nova-noticia">
+                    <h2>Adicionar Nova Notícia</h2>
+                    <form id="newsForm">
+                        <div class="form-group">
+                            <label for="newsTitle">Título</label>
+                            <input type="text" id="newsTitle" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="newsImage">URL da Imagem</label>
+                            <input type="text" id="newsImage" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="newsContent">Conteúdo</label>
+                            <textarea id="newsContent" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn">Publicar Notícia</button>
+                    </form>
+                </section>
+                
+                <section class="news-list" id="noticias-publicadas">
+                    <h2>Notícias Publicadas</h2>
+                    
+                    <div class="news-item">
+                        <div class="news-info">
+                            <h4>Novo Parque Inaugurado na Cidade</h4>
+                            <small>Publicado em: 15/10/2023</small>
+                        </div>
+                        <div class="news-actions">
+                            <a href="#editar">Editar</a>
+                            <a href="#excluir" class="delete">Excluir</a>
+                        </div>
+                    </div>
+                    
+                    <div class="news-item">
+                        <div class="news-info">
+                            <h4>Festival Cultural Atrai Milhares</h4>
+                            <small>Publicado em: 10/10/2023</small>
+                        </div>
+                        <div class="news-actions">
+                            <a href="#editar">Editar</a>
+                            <a href="#excluir" class="delete">Excluir</a>
+                        </div>
+                    </div>
+                    
+                    <div class="news-item">
+                        <div class="news-info">
+                            <h4>Investimentos em Educação</h4>
+                            <small>Publicado em: 05/10/2023</small>
+                        </div>
+                        <div class="news-actions">
+                            <a href="#editar">Editar</a>
+                            <a href="#excluir" class="delete">Excluir</a>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+    
+    <script src="../js/admin.js"></script>
+</body>
+</html>
