@@ -1,37 +1,18 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <title>Notícia Completa - Fuxico Parauapebas</title>
-    <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8">
+  <title>Notícia</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <header class="main-header">
-        <h1 class="main-title">Fuxico Parauapebas</h1>
-        <a href="index.html" class="back-button">← Voltar</a>
-    </header>
-
-    <article class="news-detail" id="news-detail">
-        <!-- Notícia carregada pelo JavaScript -->
-    </article>
-
-    <script>
-        const urlParams = new URLSearchParams(window.location.search);
-        const newsId = urlParams.get('id');
-        
-        fetch('news.json')
-            .then(response => response.json())
-            .then(news => {
-                const newsItem = news.find(item => item.id == newsId);
-                if (newsItem) {
-                    document.getElementById('news-detail').innerHTML = `
-                        <h2>${newsItem.title}</h2>
-                        <img src="${newsItem.image}" class="news-image">
-                        <p class="news-date">${newsItem.date}</p>
-                        <div class="news-content">${newsItem.content}</div>
-                    `;
-                }
-            });
-    </script>
+  <main id="noticia"></main>
+  <script>
+    const noticia = JSON.parse(localStorage.getItem('noticiaSelecionada'));
+    document.getElementById('noticia').innerHTML = `
+      <h1>${noticia.titulo}</h1>
+      <img src="${noticia.imagem}" width="100%">
+      <p>${noticia.conteudo}</p>`;
+  </script>
 </body>
 </html>
