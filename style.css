@@ -1,0 +1,37 @@
+
+body {
+  font-family: sans-serif;
+  margin: 0;
+  background-color: #fff8e1;
+  color: #3e2723;
+}
+
+header {
+  background-color: #388e3c;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+}
+
+main {
+  padding: 1rem;
+}
+
+.noticia {
+  border: 1px solid #c8b900;
+  margin: 1rem 0;
+  padding: 1rem;
+  background-color: #fffde7;
+  cursor: pointer;
+}
+
+footer {
+  text-align: center;
+  padding: 1rem;
+  background-color: #6d4c41;
+}
+
+.logo {
+  height: 80px;
+}
+    
