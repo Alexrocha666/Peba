@@ -1,21 +1,17 @@
 document.addEventListener('DOMContentLoaded', () => {
-    fetch('news.json')
-        .then(response => response.json())
-        .then(news => {
-            const container = document.getElementById('news-container');
-            news.forEach(item => {
-                container.innerHTML += `
-                    <article class="news-card">
-                        <a href="noticia.html?id=${item.id}">
-                            <img src="${item.image}" class="news-image">
-                            <div class="news-content">
-                                <h3>${item.title}</h3>
-                                <p class="news-date">${item.date}</p>
-                                <p>${item.excerpt}</p>
-                            </div>
-                        </a>
-                    </article>
-                `;
-            });
-        });
+  fetch('noticias.json')
+    .then(res => res.json())
+    .then(dados => {
+      const container = document.getElementById('noticias-container');
+      dados.forEach((noticia) => {
+        const div = document.createElement('div');
+        div.className = 'noticia';
+        div.innerHTML = `<h2>${noticia.titulo}</h2><img src="${noticia.imagem}" alt="${noticia.titulo}" width="100%"><p>${noticia.resumo}</p>`;
+        div.onclick = () => {
+          localStorage.setItem('noticiaSelecionada', JSON.stringify(noticia));
+          window.location.href = 'noticia.html';
+        };
+        container.appendChild(div);
+      });
+    });
 });
