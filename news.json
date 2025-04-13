@@ -3,16 +3,8 @@
         "id": 1,
         "title": "Novo Parque Inaugurado",
         "date": "15/10/2023",
-        "excerpt": "Prefeitura inaugura novo espaço de lazer na cidade",
         "image": "images/news1.jpg",
-        "content": "<p>O prefeito inaugurou hoje o novo parque municipal...</p>"
-    },
-    {
-        "id": 2,
-        "title": "Festival Cultural",
-        "date": "20/10/2023",
-        "excerpt": "Evento reuniu milhares de pessoas no centro",
-        "image": "images/news2.jpg",
-        "content": "<p>O festival cultural deste ano bateu recorde...</p>"
+        "excerpt": "Prefeitura inaugura novo espaço de lazer...",
+        "content": "<p>Detalhes completos da notícia...</p>"
     }
 ]
