@@ -1,0 +1,20 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Notícia</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <main id="noticia"></main>
+  <script>
+    const noticia = JSON.parse(localStorage.getItem('noticiaSelecionada'));
+    document.getElementById('noticia').innerHTML = `
+      <h1>${noticia.titulo}</h1>
+      <img src="${noticia.imagem}" width="100%">
+      <p>${noticia.conteudo}</p>`;
+  </script>
+</body>
+</html>
+    
