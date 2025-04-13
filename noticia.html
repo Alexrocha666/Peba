@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notícia Completa - Fuxico Parauapebas</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .news-detail {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 1rem;
+        }
+        .back-button {
+            display: inline-block;
+            background: #8B4513;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            text-decoration: none;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <h1 class="main-title">Fuxico Parauapebas</h1>
+        <img src="../images/logo.png" alt="Logo" class="city-logo">
+    </header>
+
+    <div class="news-detail">
+        <a href="../index.html" class="back-button">← Voltar para Notícias</a>
+        <div id="news-content"></div>
+    </div>
+
+    <script>
+        // Carrega a notícia específica
+        const loadNewsDetail = async () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const newsId = urlParams.get('id');
+            
+            try {
+                const response = await fetch('../news.json');
+                const news = await response.json();
+                const newsItem = news.find(item => item.id == newsId);
+                
+                if (newsItem) {
+                    document.getElementById('news-content').innerHTML = `
+                        <h2>${newsItem.title}</h2>
+                        <img src="../${newsItem.image}" class="news-image">
+                        <p class="news-date">${newsItem.date}</p>
+                        <div class="news-full-content">${newsItem.content}</div>
+                    `;
+                }
+            } catch (error) {
+                console.error('Erro ao carregar notícia:', error);
+            }
+        };
+        
+        loadNewsDetail();
+    </script>
+</body>
+</html>
