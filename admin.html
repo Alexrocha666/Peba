@@ -1,0 +1,29 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin - Fuxicos de Parauapebas</title>
+</head>
+<body>
+  <h1>Área Administrativa</h1>
+  <div id="login">
+    <input type="password" id="senha" placeholder="Digite a senha">
+    <button onclick="verificarSenha()">Entrar</button>
+  </div>
+
+  <div id="admin-form" style="display: none;">
+    <h2>Adicionar Notícia</h2>
+    <form id="form">
+      <input type="text" id="titulo" placeholder="Título"><br>
+      <input type="text" id="imagem" placeholder="URL da Imagem"><br>
+      <textarea id="resumo" placeholder="Resumo"></textarea><br>
+      <textarea id="conteudo" placeholder="Conteúdo"></textarea><br>
+      <button type="submit">Adicionar</button>
+    </form>
+  </div>
+
+  <script src="js/admin.js"></script>
+</body>
+</html>
+    
