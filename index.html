@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="pt-BR">
+<!DOCTYPE html>
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,55 +9,16 @@
 <body>
   <header>
     <h1>Fuxicos de Parauapebas</h1>
-  </header>  <main id="noticias-container">
-    <!-- Notícias carregadas dinamicamente aqui -->
-  </main>  <footer>
+  </header>
+
+  <main id="noticias-container">
+    <!-- Notícias carregadas dinamicamente -->
+  </main>
+
+  <footer>
     <img src="imagens/logo-parauapebas.png" alt="Logo Parauapebas" class="logo">
-  </footer>  <script src="js/main.js"></script></body>
-</html><!-- css/style.css -->body { font-family: sans-serif; margin: 0; background-color: #fff8e1; color: #3e2723; }
+  </footer>
 
-header { background-color: #388e3c; color: white; padding: 1rem; text-align: center; }
-
-main { padding: 1rem; }
-
-.noticia { border: 1px solid #c8b900; margin: 1rem 0; padding: 1rem; background-color: #fffde7; cursor: pointer; }
-
-footer { text-align: center; padding: 1rem; background-color: #6d4c41; }
-
-.logo { height: 80px; }
-
-/* js/main.js */ document.addEventListener('DOMContentLoaded', () => { fetch('noticias.json') .then(res => res.json()) .then(dados => { const container = document.getElementById('noticias-container'); dados.forEach((noticia, index) => { const div = document.createElement('div'); div.className = 'noticia'; div.innerHTML = <h2>${noticia.titulo}</h2><img src="${noticia.imagem}" alt="${noticia.titulo}" width="100%"><p>${noticia.resumo}</p>; div.onclick = () => { localStorage.setItem('noticiaSelecionada', JSON.stringify(noticia)); window.location.href = 'noticia.html'; }; container.appendChild(div); }); }); });
-
-<!-- noticia.html --><!DOCTYPE html><html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <title>Notícia</title>
-  <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-  <main id="noticia"></main>
-  <script>
-    const noticia = JSON.parse(localStorage.getItem('noticiaSelecionada'));
-    document.getElementById('noticia').innerHTML = `<h1>${noticia.titulo}</h1><img src="${noticia.imagem}" width="100%"><p>${noticia.conteudo}</p>`;
-  </script>
+  <script src="js/main.js"></script>
 </body>
-</html><!-- noticias.json -->[ { "titulo": "Primeira Notícia de Parauapebas", "imagem": "imagens/exemplo.jpg", "resumo": "Resumo da notícia...", "conteudo": "Texto completo da notícia aqui." } ]
-
-<!-- admin.html (básico) --><!DOCTYPE html><html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <title>Admin - Fuxicos de Parauapebas</title>
-</head>
-<body>
-  <h1>Adicionar Notícia</h1>
-  <form id="form">
-    <input type="text" id="titulo" placeholder="Título"><br>
-    <input type="text" id="imagem" placeholder="URL da Imagem"><br>
-    <textarea id="resumo" placeholder="Resumo"></textarea><br>
-    <textarea id="conteudo" placeholder="Conteúdo"></textarea><br>
-    <button type="submit">Adicionar</button>
-  </form>
-  <script src="js/admin.js"></script>
-</body>
-</html><!-- js/admin.js -->document.getElementById('form').addEventListener('submit', async (e) => { e.preventDefault(); const noticia = { titulo: document.getElementById('titulo').value, imagem: document.getElementById('imagem').value, resumo: document.getElementById('resumo').value, conteudo: document.getElementById('conteudo').value }; const res = await fetch('noticias.json'); const noticias = await res.json(); noticias.push(noticia); const blob = new Blob([JSON.stringify(noticias, null, 2)], { type: 'application/json' }); const url = URL.createObjectURL(blob); const a = document.createElement('a'); a.href = url; a.download = 'noticias.json'; a.click(); });
-
+</html>
